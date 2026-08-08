@@ -184,7 +184,7 @@ export function Cursor() {
       window.removeEventListener('scroll', handleScroll);
       observer.disconnect();
     };
-  }, [enabled]);
+  }, [enabled, hovering]);
 
   // Prevent hydration mismatch
   if (!mounted) return null;
