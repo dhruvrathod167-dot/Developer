@@ -78,7 +78,6 @@ export function Cursor() {
     };
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    window.addEventListener('scroll', handleScroll);
 
     // wait a tick for the enabled elements to mount before grabbing refs
     const t = setTimeout(() => {
@@ -110,11 +109,6 @@ export function Cursor() {
           dot.style.transform = `translate3d(${mx}px, ${my}px, 0) translate(-50%, -50%)`;
         }
 
-        // Add smooth scaling animation when hovering
-        if (hovering && dot) {
-          dot.style.transition = 'width 0.2s cubic-bezier(0.4, 0, 0.2, 1), height 0.2s cubic-bezier(0.4, 0, 0.2, 1)';
-        }
-
         // Use event.composedPath() for better target accuracy
         const path = e.composedPath();
         const target = path[0] as HTMLElement;
@@ -139,7 +133,7 @@ export function Cursor() {
             if (distance < 100) {
               const force = (100 - distance) / 100;
               if (dot) {
-                dot.style.transform += ` translate(${dx * force * 0.1}px, ${dy * force * 0.1}px)`;
+                dot.style.transform = `translate3d(${mx}px, ${my}px, 0) translate(-50%, -50%) translate(${dx * force * 0.1}px, ${dy * force * 0.1}px)`;
               }
             }
           }
@@ -181,10 +175,9 @@ export function Cursor() {
       document.documentElement.classList.remove('cursor-active');
       document.body.style.cursor = '';
       document.removeEventListener('visibilitychange', handleVisibilityChange);
-      window.removeEventListener('scroll', handleScroll);
       observer.disconnect();
     };
-  }, [enabled, hovering]);
+  }, [enabled]);
 
   // Prevent hydration mismatch
   if (!mounted) return null;
