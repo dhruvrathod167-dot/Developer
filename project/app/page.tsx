@@ -10,6 +10,7 @@ import { Contact } from '@/components/sections/Contact';
 import { Footer } from '@/components/sections/Footer';
 import { Cursor } from '@/components/ui/Cursor';
 import { SmoothScroll } from '@/components/ui/SmoothScroll';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <WhatsAppButton />
     </SmoothScroll>
   );
 }
