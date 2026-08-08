@@ -1,0 +1,258 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 6% 4%;
+    --foreground: 40 25% 95%;
+    --card: 240 6% 6%;
+    --card-foreground: 40 25% 95%;
+    --popover: 240 6% 6%;
+    --popover-foreground: 40 25% 95%;
+    --primary: 40 25% 95%;
+    --primary-foreground: 240 6% 4%;
+    --secondary: 240 5% 12%;
+    --secondary-foreground: 40 25% 95%;
+    --muted: 240 5% 14%;
+    --muted-foreground: 40 8% 60%;
+    --accent: 349 65% 52%;
+    --accent-foreground: 40 25% 95%;
+    --destructive: 0 62.8% 40%;
+    --destructive-foreground: 40 25% 95%;
+    --border: 240 5% 14%;
+    --input: 240 5% 14%;
+    --ring: 349 65% 52%;
+    --chart-1: 349 65% 52%;
+    --chart-2: 40 25% 95%;
+    --chart-3: 240 5% 40%;
+    --chart-4: 240 5% 60%;
+    --chart-5: 240 5% 80%;
+    --radius: 0.5rem;
+  }
+
+  .light {
+    --background: 40 30% 96%;
+    --foreground: 240 6% 8%;
+    --card: 40 30% 99%;
+    --card-foreground: 240 6% 8%;
+    --popover: 40 30% 99%;
+    --popover-foreground: 240 6% 8%;
+    --primary: 240 6% 8%;
+    --primary-foreground: 40 30% 96%;
+    --secondary: 40 20% 90%;
+    --secondary-foreground: 240 6% 8%;
+    --muted: 40 15% 88%;
+    --muted-foreground: 240 4% 38%;
+    --accent: 349 70% 42%;
+    --accent-foreground: 40 30% 96%;
+    --destructive: 0 62.8% 45%;
+    --destructive-foreground: 40 30% 96%;
+    --border: 240 5% 84%;
+    --input: 240 5% 84%;
+    --ring: 349 70% 42%;
+    --chart-1: 349 70% 42%;
+    --chart-2: 240 6% 8%;
+    --chart-3: 240 5% 50%;
+    --chart-4: 240 5% 65%;
+    --chart-5: 240 5% 80%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background-color: hsl(var(--accent));
+    color: hsl(var(--background));
+  }
+}
+
+@layer components {
+  .container-edge {
+    @apply mx-auto w-full max-w-[1600px] px-5 sm:px-8 lg:px-12;
+  }
+  .display-type {
+    @apply font-display font-bold uppercase tracking-tightest leading-[0.85];
+  }
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-ultra text-muted-foreground;
+  }
+  .hairline {
+    @apply h-px w-full bg-border;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .mask-fade-r {
+    -webkit-mask-image: linear-gradient(to right, black 70%, transparent 100%);
+    mask-image: linear-gradient(to right, black 70%, transparent 100%);
+  }
+  .mask-fade-edges {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+  .duotone-maroon {
+    filter: grayscale(100%) contrast(1.05);
+  }
+}
+
+/* Custom cursor — hide native on capable pointers */
+@media (hover: hover) and (pointer: fine) {
+  .cursor-active,
+  .cursor-active * {
+    cursor: none !important;
+  }
+}
+
+/* Premium red cursor styles */
+.cursor-active {
+  cursor: none !important;
+}
+
+/* Ensure cursor is visible above all elements */
+.cursor-active .cursor-dot,
+.cursor-active .cursor-ring,
+.cursor-active .cursor-glow {
+  pointer-events: none !important;
+  contain: layout style paint !important;
+  z-index: 2147483647 !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  transform: translate3d(-50%, -50%, 0) !important;
+  will-change: transform, width, height, opacity !important;
+}
+
+/* Fix for browser compatibility */
+@supports (backdrop-filter: none) {
+  .cursor-active .cursor-dot,
+  .cursor-active .cursor-ring,
+  .cursor-active .cursor-glow {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* Improve performance on mobile devices */
+@media (hover: none) and (pointer: coarse) {
+  .cursor-active {
+    display: none !important;
+  }
+}
+
+/* Ensure cursor works with iframe and video elements */
+iframe, video, canvas {
+  pointer-events: auto !important;
+}
+
+/* Magnetic cursor interactions */
+[data-cursor] {
+  cursor: none !important;
+  transition: none !important;
+}
+
+/* Smooth cursor transitions */
+.cursor-dot,
+.cursor-ring,
+.cursor-glow {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Magnetic cursor button effects */
+[data-cursor="mail"],
+[data-cursor="view"],
+[data-cursor="brief"],
+[data-cursor="top"],
+[data-cursor="CV"],
+[data-cursor="GitHub"],
+[data-cursor="LinkedIn"] {
+  position: relative;
+  overflow: hidden;
+}
+
+[data-cursor="mail"]::before,
+[data-cursor="view"]::before,
+[data-cursor="brief"]::before,
+[data-cursor="top"]::before,
+[data-cursor="CV"]::before,
+[data-cursor="GitHub"]::before,
+[data-cursor="LinkedIn"]::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 45, 45, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease-out, height 0.3s ease-out;
+}
+
+[data-cursor="mail"]:hover::before,
+[data-cursor="view"]:hover::before,
+[data-cursor="brief"]:hover::before,
+[data-cursor="top"]:hover::before,
+[data-cursor="CV"]:hover::before,
+[data-cursor="GitHub"]:hover::before,
+[data-cursor="LinkedIn"]:hover::before {
+  width: 100px;
+  height: 100px;
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--secondary));
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--accent));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

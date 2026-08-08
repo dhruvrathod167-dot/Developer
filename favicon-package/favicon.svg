@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- Background circle -->
+  <circle cx="60" cy="60" r="55" fill="none" stroke="#DC2626" stroke-width="8"/>
+  <!-- D letter -->
+  <path d="M 30 35 L 30 85 L 50 85 Q 70 85 70 65 Q 70 45 50 45 Z" fill="#DC2626"/>
+  <!-- R letter -->
+  <path d="M 85 35 L 85 85 L 95 85 M 85 35 L 95 45 M 85 55 L 95 55 L 105 65"
+        fill="none" stroke="#333" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
