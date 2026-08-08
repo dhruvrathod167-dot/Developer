@@ -1,14 +1,15 @@
 'use client';
 
 import React from 'react';
-import { Phone } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { FaWhatsapp } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { WHATSAPP_CONFIG } from '@/lib/config';
 
 const WhatsAppButton = () => {
   const handleClick = () => {
-    const whatsappUrl = `https://wa.me/${WHATSAPP_CONFIG.NUMBER}?text=${encodeURIComponent(WHATSAPP_CONFIG.MESSAGE)}`;
+    const whatsappUrl = `https://api.whatsapp.com/send/?phone=${WHATSAPP_CONFIG.NUMBER}&text=${encodeURIComponent(WHATSAPP_CONFIG.MESSAGE)}`;
     window.open(whatsappUrl, '_blank');
   };
 
@@ -17,16 +18,29 @@ const WhatsAppButton = () => {
       <div className="fixed bottom-6 right-6 z-50 md:bottom-8 md:right-8">
         <Tooltip>
           <TooltipTrigger asChild>
-            <Button
-              size="icon"
-              className="h-14 w-14 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-300 focus:ring-opacity-50 animate-pulse"
-              onClick={handleClick}
-              aria-label="Chat on WhatsApp"
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              animate={{
+                scale: [1, 1.05, 1],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
             >
-              <Phone className="h-7 w-7" />
-            </Button>
+              <Button
+                size="icon"
+                className="h-14 w-14 rounded-[12px] bg-[#25D366] hover:bg-[#128C7E] text-white shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-[#25D366] focus:ring-opacity-50"
+                onClick={handleClick}
+                aria-label="Chat on WhatsApp"
+              >
+                <FaWhatsapp className="h-7 w-7" />
+              </Button>
+            </motion.div>
           </TooltipTrigger>
-          <TooltipContent className="bg-green-500 text-white border-none">
+          <TooltipContent className="bg-[#25D366] text-white border-none">
             <p className="font-medium">Chat on WhatsApp</p>
           </TooltipContent>
         </Tooltip>

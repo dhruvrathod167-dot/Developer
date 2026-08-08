@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Inter, Bebas_Neue, JetBrains_Mono } from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 const sans = Inter({
   subsets: ['latin'],
@@ -92,6 +93,7 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-background text-foreground antialiased">
+        <WhatsAppButton />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
