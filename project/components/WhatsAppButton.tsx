@@ -36,7 +36,7 @@ const WhatsAppButton = () => {
                 onClick={handleClick}
                 aria-label="Chat on WhatsApp"
               >
-                <FaWhatsapp className="h-7 w-7" />
+                <FaWhatsapp size={28} color="#FFFFFF" />
               </Button>
             </motion.div>
           </TooltipTrigger>
